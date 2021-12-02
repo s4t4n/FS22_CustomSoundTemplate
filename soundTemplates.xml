@@ -1,0 +1,3175 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<soundTemplates>
+
+<!--
+    Available Sound Modifiers:
+
+    HIGH_PRESSURE_WASHER_LOAD   - high pressure washer load (0 if off and 1 if turned on, fading between)
+    COMBINE_LOAD                - load of combines
+    ACCELERATE                  - accelerate axis
+    DECELERATE                  - decelerate / brake axis
+    CRUISECONTROL               - cruise control active state [0, 1]
+    DRIVING_DIRECTION           - direction if driving [-1, 0, 1]
+    MOTOR_RPM                   - rpm scale between 0 and 1
+    MOTOR_RPM_REAL              - real rpm value between 0 and maxRpm defined in xml
+    MOTOR_LOAD                  - motor load between 0 and 1
+    BRAKE_TIME                  - time of braking in seconds
+    BLOW_OFF_VALVE_STATE        - blow off valve state
+    MOWER_LOAD                  - load of mowers
+    SUSPENSION                  - current suspension travel in cm
+    SPEED                       - vehicle speed in km/h
+
+-->
+
+
+    <!-- VEHICLES -->
+    <!-- Engine -->
+
+    <template name="engineDefault" >
+        <volume indoor="1.00" outdoor="1.00" />
+    </template>
+
+    <template name="engineSmall" parent="engineDefault" innerRadius="8.0" outerRadius="60">
+        <volume indoor="0.80" outdoor="1.00" />
+        <lowpassGain indoor="0.40" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="250.0" outdoor="20000.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+    <template name="engineSmallVintage" parent="engineSmall" >
+        <volume indoor="0.9" outdoor="1.00" />
+        <lowpassGain indoor="0.9" outdoor="1.0" />
+    </template>
+
+    <template name="engineMedium" parent="engineDefault" innerRadius="8.0" outerRadius="65">
+        <volume indoor="0.80" outdoor="1.00" />
+        <lowpassGain indoor="0.45" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="250" outdoor="20000.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+    <template name="engineMediumVintage" parent="engineMedium" >
+        <volume indoor="0.9" outdoor="1.00" />
+        <lowpassGain indoor="0.9" outdoor="1.0" />
+    </template>
+
+    <template name="engineLarge" parent="engineDefault" innerRadius="8.0" outerRadius="70">
+        <volume indoor="0.80" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="250.0" outdoor="20000.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+
+
+
+    <!-- Transmission -->
+
+    <template name="transmissionDefault" file="$data/sounds/vehicles/transmission/transmissionLoop.wav" innerRadius="7.0" outerRadius="70.0" volumeScale="1.8" >
+        <volume indoor="0.5" outdoor="1.5" >
+            <modifier type="SPEED" value="10.0" modifiedValue="0.0" />
+            <modifier type="SPEED" value="60.0" modifiedValue="1.2" />
+            <modifier type="SPEED" value="75.0" modifiedValue="1.3" />
+            <modifier type="SPEED" value="120.0" modifiedValue="1.4" />
+
+            <modifier type="MOTOR_LOAD" value="-1.00" modifiedValue="1.0" />
+            <modifier type="MOTOR_LOAD" value="0.00" modifiedValue="1.0" />
+            <modifier type="MOTOR_LOAD" value="0.20" modifiedValue="1.0" />
+            <modifier type="MOTOR_LOAD" value="0.45" modifiedValue="2.0" />
+            <modifier type="MOTOR_LOAD" value="0.80" modifiedValue="1.0" />
+            <modifier type="MOTOR_LOAD" value="1.00" modifiedValue="0.7" />
+
+            <modifier type="DRIVING_DIRECTION" value="-1.0" modifiedValue="1.5" />
+            <modifier type="DRIVING_DIRECTION" value="0.00" modifiedValue="0.0" />
+            <modifier type="DRIVING_DIRECTION" value="1.00" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.80" outdoor="1.77">
+            <modifier type="SPEED" value="0.0" modifiedValue="0.3"/>
+            <modifier type="SPEED" value="60.0" modifiedValue="0.8"/>
+            <modifier type="SPEED" value="120.0" modifiedValue="1.3"/>
+
+            <modifier type="SUSPENSION" value="-1.0" modifiedValue="0.9" />
+            <modifier type="SUSPENSION" value="-0.5" modifiedValue="0.95" />
+            <modifier type="SUSPENSION" value="0.0" modifiedValue="1.0" />
+            <modifier type="SUSPENSION" value="0.5" modifiedValue="1.05" />
+            <modifier type="SUSPENSION" value="1.0" modifiedValue="1.1" />
+
+            <modifier type="DRIVING_DIRECTION" value="-1.0" modifiedValue="1.4" />
+            <modifier type="DRIVING_DIRECTION" value="0.00" modifiedValue="1.0" />
+            <modifier type="DRIVING_DIRECTION" value="1.00" modifiedValue="1.0" />
+        </pitch>
+    </template>
+
+    <template name="transmissionHarvesterDefault" innerRadius="7.0" outerRadius="70.0" volumeScale="1.8" >
+        <volume indoor="0.5" outdoor="1.5" >
+            <modifier type="SPEED" value="10.0" modifiedValue="0.0" />
+            <modifier type="SPEED" value="60.0" modifiedValue="1.2" />
+            <modifier type="SPEED" value="75.0" modifiedValue="1.3" />
+            <modifier type="SPEED" value="120.0" modifiedValue="1.4" />
+
+            <modifier type="MOTOR_LOAD" value="-1.00" modifiedValue="1.0" />
+            <modifier type="MOTOR_LOAD" value="0.00" modifiedValue="1.0" />
+            <modifier type="MOTOR_LOAD" value="0.20" modifiedValue="1.0" />
+            <modifier type="MOTOR_LOAD" value="0.30" modifiedValue="0.9" />
+            <modifier type="MOTOR_LOAD" value="0.80" modifiedValue="0.8" />
+            <modifier type="MOTOR_LOAD" value="1.00" modifiedValue="0.7" />
+
+            <modifier type="DRIVING_DIRECTION" value="-1.0" modifiedValue="1.5" />
+            <modifier type="DRIVING_DIRECTION" value="0.00" modifiedValue="0.0" />
+            <modifier type="DRIVING_DIRECTION" value="1.00" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.80" outdoor="1.77">
+            <modifier type="SPEED" value="0.0" modifiedValue="0.3"/>
+            <modifier type="SPEED" value="60.0" modifiedValue="0.8"/>
+            <modifier type="SPEED" value="120.0" modifiedValue="1.3"/>
+
+            <modifier type="SUSPENSION" value="-1.0" modifiedValue="0.9" />
+            <modifier type="SUSPENSION" value="-0.5" modifiedValue="0.95" />
+            <modifier type="SUSPENSION" value="0.0" modifiedValue="1.0" />
+            <modifier type="SUSPENSION" value="0.5" modifiedValue="1.05" />
+            <modifier type="SUSPENSION" value="1.0" modifiedValue="1.1" />
+
+            <modifier type="DRIVING_DIRECTION" value="-1.0" modifiedValue="1.4" />
+            <modifier type="DRIVING_DIRECTION" value="0.00" modifiedValue="1.0" />
+            <modifier type="DRIVING_DIRECTION" value="1.00" modifiedValue="1.0" />
+        </pitch>
+    </template>
+
+    <template name="transmissionHarvesterWorkDefault" innerRadius="2.0" outerRadius="50.0">
+        <pitch indoor="1.0" outdoor="1.0">
+            <modifier type="SUSPENSION" value="-1.0" modifiedValue="0.9" />
+            <modifier type="SUSPENSION" value="-0.5" modifiedValue="0.95" />
+            <modifier type="SUSPENSION" value="0.0" modifiedValue="1.0" />
+            <modifier type="SUSPENSION" value="0.5" modifiedValue="1.05" />
+            <modifier type="SUSPENSION" value="1.0" modifiedValue="1.1" />
+        </pitch>
+    </template>
+
+    <template name="transmissionSmall" parent="transmissionDefault" innerRadius="7.0" outerRadius="60.0" >
+        <volume indoor="0.5" outdoor="1.5" />
+        <lowpassGain indoor="0.2" outdoor="0.5" />
+        <lowpassCutoffFrequency indoor="700" outdoor="2000.0" />
+        <lowpassResonance indoor="1.0" outdoor="2.0"/>
+    </template>
+
+    <template name="transmissionSmallVintage" parent="transmissionSmall" innerRadius="7.0" outerRadius="60.0" >
+        <volume indoor="1.2" outdoor="1.5" />
+    </template>
+
+    <template name="transmissionMedium" parent="transmissionDefault" innerRadius="7.0" outerRadius="65.0" >
+        <volume indoor="0.5" outdoor="1.5" />
+        <lowpassGain indoor="0.2" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="500" outdoor="500.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+    <template name="transmissionMediumVintage" parent="transmissionMedium" innerRadius="7.0" outerRadius="65.0" >
+        <volume indoor="1.2" outdoor="1.5" />
+    </template>
+
+    <template name="transmissionLarge" parent="transmissionDefault" innerRadius="7.0" outerRadius="70.0" >
+        <volume indoor="0.5" outdoor="1.5" />
+        <lowpassGain indoor="0.2" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="700" outdoor="20000.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+    <template name="transmissionHarvester" file="$data/sounds/vehicles/transmission/hydrostaticTransmission.wav" parent="transmissionHarvesterDefault" innerRadius="5.0" outerRadius="70.0" pitchScale="0.7">
+        <volume indoor="0.8" outdoor="2.8" />
+        <lowpassGain indoor="0.2" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="700" outdoor="20000.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+    <template name="transmissionForageHarvesterWork" file="$data/sounds/vehicles/transmission/hydrostaticTransmission.wav" parent="transmissionHarvesterWorkDefault" pitchScale="0.55">
+        <volume indoor="1.0" outdoor="3.3" />
+        <lowpassGain indoor="0.2" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="700" outdoor="20000.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+    <template name="transmissionForageHarvesterWork2" file="$data/sounds/vehicles/transmission/transmissionHarvesterWorkLoop.wav" parent="transmissionHarvesterWorkDefault" pitchScale="0.55" volumeScale="0.45">
+        <volume indoor="1.0" outdoor="3.0" />
+        <lowpassGain indoor="0.2" outdoor="1.0" />
+        <lowpassCutoffFrequency indoor="700" outdoor="20000.0" />
+        <lowpassResonance indoor="1.0" outdoor="1.0"/>
+    </template>
+
+    <!-- Gearbox -->
+
+    <template name="defaultGearShift" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="1.00" outdoor="0.80" />
+        <pitch indoor="0.5" outdoor="0.7" />
+        <randomization minVolume="-0.2" maxVolume="0.0" minPitch="-0.1" maxPitch="0.4" isInside="true" isOutside="false"/>
+        <randomization minVolume="-0.3" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="false" isOutside="true"/>
+    </template>
+
+    <template name="gearEngaged" parent="defaultGearShift" file="$data/sounds/vehicles/gearShift/gearEngaged01.wav" >
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearEngaged02.wav"/>
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearEngaged03.wav"/>
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearEngaged04.wav"/>
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearEngaged05.wav"/>
+    </template>
+
+    <template name="gearDisengaged" parent="defaultGearShift" file="$data/sounds/vehicles/gearShift/gearDisengaged01.wav" >
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearDisengaged02.wav"/>
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearDisengaged03.wav"/>
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearDisengaged04.wav"/>
+        <sourceRandomization file="$data/sounds/vehicles/gearShift/gearDisengaged05.wav"/>
+    </template>
+
+    <!-- Cabin rumble -->
+    <template name="indoorCabinRumble" file="$data/sounds/vehicles/cabin/indoorCabinRumbleLoop.wav" innerRadius="5.0" outerRadius="15.0" volumeScale="9">
+        <volume indoor="1.00" outdoor="0.10" >
+            <modifier type="SUSPENSION" value="-0.15" modifiedValue="0.4" />
+            <modifier type="SUSPENSION" value="-0.07" modifiedValue="0.4" />
+            <modifier type="SUSPENSION" value="-0.02" modifiedValue="0.35" />
+            <modifier type="SUSPENSION" value="-0.01" modifiedValue="0.28" />
+            <modifier type="SUSPENSION" value="0.0"   modifiedValue="0.0" />
+            <modifier type="SUSPENSION" value="0.01"  modifiedValue="0.28" />
+            <modifier type="SUSPENSION" value="0.02"  modifiedValue="0.35" />
+            <modifier type="SUSPENSION" value="0.07"  modifiedValue="0.4" />
+            <modifier type="SUSPENSION" value="0.15"  modifiedValue="0.4" />
+        </volume>
+        <pitch indoor="1.00" outdoor="0.5" >
+            <modifier type="SPEED" value="0.0" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="80.0" modifiedValue="0.7"/>
+        </pitch>
+        <lowpassGain indoor="0.4" outdoor="0.3" />
+        <lowpassCutoffFrequency indoor="200.0" outdoor="20000.0" />
+        <randomization minVolume="-0.2" maxVolume="0.0" minPitch="-0.1" maxPitch="0.4" isInside="true" isOutside="false"/>
+    </template>
+
+    <!-- Windscreen Wipers -->
+
+    <template name="wiper1" file="$data/sounds/vehicles/windscreen/wiper1.wav" innerRadius="3.0" outerRadius="30.0" >
+        <volume indoor="1.40" outdoor="1.0" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="1.00"/>
+    </template>
+
+    <template name="wiper2" file="$data/sounds/vehicles/windscreen/wiper2.wav" innerRadius="3.0" outerRadius="30.0" >
+        <volume indoor="1.40" outdoor="1.0" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="1.00"/>
+    </template>
+
+
+    <!-- Compressed Air and Brake -->
+
+    <template name="compressedAir" file="$data/sounds/vehicles/brake/compressedAir01.wav" innerRadius="10.0" outerRadius="60.0" volumeScale="0.4" >
+        <volume indoor="0.60" outdoor="1.00" />
+        <lowpassGain indoor="0.70" outdoor="1.0" />
+        <sourceRandomization file="$data/sounds/vehicles/brake/compressedAir02.wav"/>
+        <sourceRandomization file="$data/sounds/vehicles/brake/compressedAir03.wav"/>
+        <randomization minVolume="-0.2" maxVolume="0.0" minPitch="-0.1" maxPitch="0.1" isInside="false" isOutside="true"/>
+    </template>
+
+    <template name="brakeCompressorDefault" file="$data/sounds/vehicles/compressor/compressorLoop.wav" innerRadius="10.0" outerRadius="40.0" fadeOut="0.1">
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="brakeCompressorSmall" parent="brakeCompressorDefault">
+        <volume indoor="0.15" outdoor="0.4" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="brakeCompressorMedium" parent="brakeCompressorDefault">
+        <volume indoor="0.15" outdoor="0.6" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="brakeCompressorLarge" parent="brakeCompressorDefault">
+        <volume indoor="0.25" outdoor="0.7" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <!-- Fan -->
+
+    <template name="fanLoop" file="$data/sounds/vehicles/fan/fanLoop.wav" innerRadius="0.5" outerRadius="20.0" fadeIn="2" fadeOut="1.0">
+        <volume indoor="0.15" outdoor="0.6" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <!-- Vehicle Cabin Rain -->
+
+    <!-- <template name="rainInVehicleHard" file="$data/sounds/maps/shared/environment/rainInVehicleMono.wav" pitchScale="1.35"> -->
+        <!-- <volume indoor="0.80" outdoor="0.00" > -->
+            <!-- <modifier type="SPEED" value="0.0"    modifiedValue="2.00" /> -->
+            <!-- <modifier type="SPEED" value="10.0"   modifiedValue="6.00" /> -->
+            <!-- <modifier type="SPEED" value="20.00"  modifiedValue="8.00" /> -->
+            <!-- <modifier type="SPEED" value="30.00"  modifiedValue="10.00" /> -->
+            <!-- <modifier type="SPEED" value="40.00"  modifiedValue="13.00" /> -->
+            <!-- <modifier type="SPEED" value="50.00"  modifiedValue="16.00" /> -->
+        <!-- </volume> -->
+    <!-- </template> -->
+
+    <!-- ANIMATIONS -->
+
+    <!-- Thuds -->
+
+    <template name="thudVar1" file="$data/sounds/animations/thuds/thud1Var01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00"/>
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="thudVar2" file="$data/sounds/animations/thuds/thud2Var01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="0.60" />
+        <pitch indoor="0.5" outdoor="0.5" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.2" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Clacks -->
+
+    <template name="clackVar1" file="$data/sounds/animations/clacks/clack1Var01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="clackVar2" file="$data/sounds/animations/clacks/clack2Var01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="clackVar2Small" file="$data/sounds/animations/clacks/clack2Var01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="2.5" outdoor="2.5" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="clackVar3" file="$data/sounds/animations/clacks/clack3Var01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="clackVar4" file="$data/sounds/animations/clacks/clack4Var01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="clackVar5" file="$data/sounds/animations/clacks/clackVar5.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="clackVar6" file="$data/sounds/animations/clacks/clackVar6.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Clicks -->
+
+    <template name="clickShort" file="$data/sounds/animations/clicks/clicksShort1.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="0.35" />
+        <pitch indoor="0.50" outdoor="0.50" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="0.0" maxPitch="0.4" isInside="true" isOutside="true"/>
+        <sourceRandomization file="$data/sounds/animations/clicks/clicksShort2.wav"/>
+    </template>
+
+    <template name="clickLong" file="$data/sounds/animations/clicks/clicksLong1.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="0.4" />
+        <pitch indoor="0.5" outdoor="0.5" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="0" maxPitch="0.2" isInside="true" isOutside="true"/>
+        <sourceRandomization file="$data/sounds/animations/clicks/clicksLong2.wav"/>
+    </template>
+
+    <!-- Rattles -->
+
+    <template name="rattleHard" file="$data/sounds/animations/rattles/rattleHard1.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.10" outdoor="0.25" />
+        <pitch indoor="0.45" outdoor="0.45" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.01" maxVolume="0.01" minPitch="0.01" maxPitch="0.01" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="rattleSoft" file="$data/sounds/animations/rattles/rattleSoft1.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="0.2" />
+        <pitch indoor="0.3" outdoor="0.3" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0" maxVolume="0.1" minPitch="0.01" maxPitch="0.01" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Switch outdoor -->
+
+    <template name="switch" file="$data/sounds/vehicles/switch/switch_01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="0.6" />
+        <pitch indoor="0.70" outdoor="0.70" />
+        <lowpassGain indoor="0.5" outdoor="1.00" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Hinges -->
+
+    <template name="hingeSmall" file="$data/sounds/animations/hinges/hingeSmall01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.4" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.05" maxVolume="0.0" minPitch="0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="hingeMedium" file="$data/sounds/animations/hinges/hingeMedium01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.4" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.05" maxVolume="0.0" minPitch="0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+
+    </template>
+
+    <!-- Impacts -->
+
+    <template name="metalOpen" file="$data/sounds/animations/impacts/metalOpen01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="0.02" maxPitch="0.02" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="metalClose" file="$data/sounds/animations/impacts/metalClose01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.15" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.30" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.02" maxPitch="0.01" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="metalLowVar2" file="$data/sounds/animations/impacts/metalLowVar2_01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.8" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="0.0" maxPitch="0.0" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="metalLowVar3" file="$data/sounds/animations/impacts/metalLowVar3_01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="0.0" maxPitch="0.0" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="rattleMed01" file="$data/sounds/animations/impacts/rattle01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="0.0" maxPitch="0.0" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="sheetImp01" file="$data/sounds/animations/impacts/sheetImp01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="sheetImp02" file="$data/sounds/animations/impacts/sheetImp02.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="sheetImp03" file="$data/sounds/animations/impacts/sheetImp03.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="sheetImp04" file="$data/sounds/animations/impacts/sheetImp04.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="sheetImp05" file="$data/sounds/animations/impacts/sheetImp05.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="sheetImp06" file="$data/sounds/animations/impacts/sheetImp06.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="metalHigh01" file="$data/sounds/animations/impacts/metalHigh01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.0" minPitch="0.0" maxPitch="0.0" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Latches -->
+
+    <template name="latchSmall" file="$data/sounds/animations/latches/latchSmall01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.1" maxVolume="0.1" minPitch="0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Slides -->
+
+    <template name="slideOpen" file="$data/sounds/animations/slides/metalSlideOpen01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="slideClose" file="$data/sounds/animations/slides/metalSlideClose01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+<!--Folding Start-->
+
+    <template name="foldStartSm01" file="$data/sounds/animations/foldStart/foldStartSmVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="foldStartSm02" file="$data/sounds/animations/foldStart/foldStartSmVar02.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="foldStartMed01" file="$data/sounds/animations/foldStart/foldStartMedVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="foldStartMed02" file="$data/sounds/animations/foldStart/foldStartMedVar02.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <!--Folding Stop-->
+
+    <template name="foldStopSm01" file="$data/sounds/animations/foldStop/foldStopSmVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="foldStopSm02" file="$data/sounds/animations/foldStop/foldStopSmVar02.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="foldStopMed01" file="$data/sounds/animations/foldStop/foldStopMedVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="foldStopMed02" file="$data/sounds/animations/foldStop/foldStopMedVar02.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <!--Lowering Ground-->
+
+    <template name="lowGroundMed01" file="$data/sounds/animations/lowGround/lowGroundMedVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="lowGroundMed02" file="$data/sounds/animations/lowGround/lowGroundMedVar02.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="lowStartGroundMed01" file="$data/sounds/animations/lowGround/lowStartGroundMedVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <!--Raise Ground-->
+
+    <template name="raiseGroundMed01" file="$data/sounds/animations/raiseGround/raiseGroundMedVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="raiseEndMed01" file="$data/sounds/animations/raiseGround/raiseEndMedVar01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <!--Metal Cover-->
+
+    <template name="coverMetalOpen" file="$data/sounds/animations/coverMetal/coverMetalOpen.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="ladderIn" file="$data/sounds/animations/ladder/ladderIn.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="ladderOut" file="$data/sounds/animations/ladder/ladderOut.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.0" maxVolume="0.1" minPitch="0.05" maxPitch="0.05" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Loops -->
+
+    <template name="loopLayer1" file="$data/sounds/animations/loops/loopLayer1.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.3">
+        <volume indoor="0.10" outdoor="0.20" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="loopLayer1Small" file="$data/sounds/animations/loops/loopLayer1.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.3">
+        <volume indoor="0.05" outdoor="0.10" />
+        <pitch indoor="2.00" outdoor="2.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="loopLayer2" file="$data/sounds/animations/loops/loopLayer2.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.2">
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="loopLayer3" file="$data/sounds/animations/loops/loopLayer3.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="loopLayer4" file="$data/sounds/animations/loops/loopLayer4.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="loopLayer5" file="$data/sounds/animations/loops/loopLayer5.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.3">
+        <volume indoor="0.10" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.3" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Hydraulic loops -->
+
+    <template name="defaultHydraulicSound" file="$data/sounds/vehicles/hydraulic/hydraulic_loop_01.wav" innerRadius="1.0" outerRadius="60.0"  fadeOut="0.08">
+        <volume indoor="0.10" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.02" maxPitch="0.02" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="defaultHydraulicSmall" file="$data/sounds/vehicles/hydraulic/hydraulic_loop_01.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.08">
+        <volume indoor="0.07" outdoor="0.20" />
+        <pitch indoor="1.2" outdoor="1.2" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization maxVolume="0.05" minPitch="-0.01" maxPitch="0.01" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="hydraulicLayerTone" file="$data/sounds/vehicles/hydraulic/hydraulicToneLoop.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.08">
+        <volume indoor="0.1" outdoor="0.7" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization maxVolume="0.02" minPitch="-0.05" maxPitch="0.02" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="hydraulicLayerTone2" file="$data/sounds/vehicles/hydraulic/hydraulicToneLoop2.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.08">
+        <volume indoor="0.1" outdoor="0.7" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization maxVolume="0.02" minPitch="-0.02" maxPitch="0.02" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="hydraulicLayerTone3" file="$data/sounds/vehicles/hydraulic/hydraulicToneLoop3.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.08">
+        <volume indoor="0.1" outdoor="0.7" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization maxVolume="0.02" minPitch="-0.01" maxPitch="0.01" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="defaultHydraulicHarvesters" file="$data/sounds/vehicles/hydraulic/hydraulic_loop_01.wav" innerRadius="1.0" outerRadius="60.0"  fadeOut="0.25" fadeIn="0.15">
+        <volume indoor="0.3" outdoor="0.7" />
+        <pitch indoor="0.65" outdoor="0.65" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.02" maxPitch="0.02" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- Trailer hydraulic -->
+
+    <template name="cylinderPunch" file="$data/sounds/animations/impacts/cylinderImpact01.wav" innerRadius="1.0" outerRadius="60.0" fadeOut="0.08">
+        <volume indoor="1.2" outdoor="1.8" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.05" maxVolume="0.05" minPitch="-0.08" maxPitch="0.05" isInside="true" isOutside="true"/>
+        <sourceRandomization file="$data/sounds/animations/impacts/cylinderImpact02.wav"/>
+        <sourceRandomization file="$data/sounds/animations/impacts/cylinderImpact03.wav"/>
+    </template>
+
+    <template name="TRAILER_PUNCH_END_NEG" file="$data/sounds/vehicles/shared/attach_01.wav" innerRadius="1.0" outerRadius="60.0" >
+        <volume indoor="0.10" outdoor="0.90" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="TRAILER_PUNCH_END_NEG_01" parent="TRAILER_PUNCH_END_NEG">
+        <pitch indoor="0.5" outdoor="0.5" />
+    </template>
+    <template name="TRAILER_PUNCH_END_NEG_02" parent="TRAILER_PUNCH_END_NEG">
+        <pitch indoor="0.6" outdoor="0.6" />
+    </template>
+    <template name="TRAILER_PUNCH_END_NEG_03" parent="TRAILER_PUNCH_END_NEG">
+        <pitch indoor="0.7" outdoor="0.7" />
+    </template>
+    <template name="TRAILER_PUNCH_END_NEG_04" parent="TRAILER_PUNCH_END_NEG">
+        <pitch indoor="0.8" outdoor="0.8" />
+    </template>
+    <template name="TRAILER_PUNCH_END_NEG_05" parent="TRAILER_PUNCH_END_NEG">
+        <pitch indoor="0.9" outdoor="0.9" />
+    </template>
+    <template name="TRAILER_PUNCH_END_NEG_06" parent="TRAILER_PUNCH_END_NEG">
+        <pitch indoor="1.0" outdoor="1.0" />
+    </template>
+
+    <!-- PLACEABLES -->
+
+    <!-- Doors -->
+
+    <template name="doorsAll" >
+        <volume indoor="4" outdoor="4" />
+    </template>
+
+    <template name="metalDoorsLoop" parent="doorsAll" file="$data/sounds/prefab/gate/metalDoorsLoop01.wav" loops="0" pitchScale="0.9" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.4">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="metalDoorsOpen" parent="doorsAll" file="$data/sounds/prefab/gate/gateDoorOpen.wav" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.4">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="metalDoorsClose" parent="doorsAll" file="$data/sounds/prefab/gate/gateDoorClose.wav" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="1.1" pitchScale="0.8">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="rollingGarageDoor" parent="doorsAll" file="$data/sounds/prefab/gate/garageDoorLoop.wav" loops="0" innerRadius="4" outerRadius="27" fadeOut="0.1" volumeScale="0.6">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="slidingGateMetalLoop" parent="doorsAll" file="$data/sounds/prefab/gate/gateLoop.wav" loops="0" innerRadius="4" outerRadius="30" fadeOut="0.1" volumeScale="0.4" pitchScale="0.7">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="slidingGateMetalOpen" parent="doorsAll" file="$data/sounds/prefab/gate/gateClose.wav" innerRadius="3" outerRadius="30" fadeOut="0.1" volumeScale="0.2" pitchScale="1.2">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="slidingGateMetalClose" parent="doorsAll" file="$data/sounds/prefab/gate/gateClose.wav" innerRadius="3" outerRadius="30" fadeOut="0.1" volumeScale="0.2">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="woodBigDoorLoop" parent="doorsAll" file="$data/sounds/prefab/gate/metalDoorsLoop01.wav" loops="0" innerRadius="3" outerRadius="20" fadeOut="0.1" volumeScale="0.4" pitchScale="0.8">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="woodDoorOpen" parent="doorsAll" file="$data/sounds/prefab/gate/woodDoorOpenBarn.wav" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.6">
+        <pitch indoor="0.8" outdoor="0.8" />
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="woodDoorClose" parent="doorsAll" file="$data/sounds/prefab/gate/woodDoorCloseBarn.wav" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.6">
+        <randomization minVolume="-0.1" maxVolume="0.5" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="slidingGateWoodLoop" parent="doorsAll" file="$data/sounds/prefab/gate/woodSlideDoorLoop.wav" loops="0" innerRadius="4" outerRadius="30" fadeIn="0.2" fadeOut="0.1" volumeScale="0.3">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="plasitcVentilationGateLoop" parent="doorsAll" file="$data/sounds/prefab/gate/plasticGate.wav" loops="0" innerRadius="2" outerRadius="15" fadeOut="0.1">
+        <randomization minVolume="-0.1" maxVolume="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="glassDoorLoop" parent="doorsAll" file="$data/sounds/prefab/gate/backDoorLoop.wav" loops="0" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.3" pitchScale="0.7">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="fenceLoop" parent="doorsAll" file="$data/sounds/prefab/gate/fencesLoop.wav" loops="0" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.2" pitchScale="0.6">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="fenceOpen" parent="doorsAll" file="$data/sounds/prefab/gate/gateOpened.wav" innerRadius="3" outerRadius="18"  volumeScale="0.2" pitchScale="0.9">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="fenceClose" parent="doorsAll" file="$data/sounds/prefab/gate/gateClosed.wav" innerRadius="3" outerRadius="18"  volumeScale="0.3" pitchScale="0.9">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="fenceMetalLoop" parent="doorsAll" file="$data/sounds/prefab/gate/fenceMetalLoop01.wav" loops="0" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.4" pitchScale="0.8">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="fenceMetalOpen" parent="doorsAll" file="$data/sounds/prefab/gate/lelyVectorClose.wav" innerRadius="3" outerRadius="18" fadeOut="0.1" volumeScale="0.2" pitchScale="1.5">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="fenceMetalClose" parent="doorsAll" file="$data/sounds/prefab/gate/fencesCloseMetal.wav" innerRadius="3" outerRadius="18"  volumeScale="0.3" pitchScale="0.8">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="plasticDoorOpen" parent="doorsAll" file="$data/sounds/prefab/gate/plasticDoorOpen.wav" innerRadius="3" outerRadius="18"  volumeScale="0.3" pitchScale="1.1">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="plasticDoorClose" parent="doorsAll" file="$data/sounds/prefab/gate/plasticDoorClose.wav" innerRadius="3" outerRadius="18"  volumeScale="0.2" pitchScale="1.1">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <!--lelyVector-->
+
+    <template name="vectorLoop" file="$data/sounds/prefab/gate/lelyVectorLoop.wav" loops="0" innerRadius="3" outerRadius="18" volumeScale="1.8" pitchScale="1">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <template name="feedingRobotLoop" file="$data/sounds/placeables/robotFeedingLoop.wav" loops="0" innerRadius="3" outerRadius="18" volumeScale="0.6" pitchScale="1">
+        <randomization minVolume="-0.1" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true" />
+    </template>
+
+    <!-- GENERATORS -->
+
+    <template name="generator05" file="$data/sounds/prefab/generators/electricGenerator005.wav" loops="0" innerRadius="50" outerRadius="100" fadeOut="0.1" volumeScale="4"/>
+
+
+    <!-- FLOODLIGHTS -->
+
+    <template name="lizardFloodLight" file="$data/sounds/prefab/floodLight/lizardFloodLight05.wav" innerRadius="3" outerRadius="20" fadeOut="0.1" volumeScale="1.4" >
+        <randomization minVolume="-0.1" maxVolume="0.1" isOutside="true" />
+    </template>
+
+    <!-- BeeHives -->
+
+    <template name="beeHives" file="$data/sounds/prefab/beeHives/beeHivesLoop.wav" innerRadius="1.00" outerRadius="35.00" fadeOut="0.1" volumeScale="1.30" loops="0" >
+        <randomization minVolume="-0.05" maxVolume="0.05" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <!--ProductionBuidlings-->
+
+    <template name="bakeryIdle" file="$data/sounds/placeables/bakeryIdle.wav" innerRadius="5.00" outerRadius="18.00" fadeOut="0.1" volumeScale="1.4" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="bakeryWork" file="$data/sounds/placeables/bakeryWork.wav" innerRadius="6.00" outerRadius="25.00" fadeOut="0.1" volumeScale="2.1" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="carpenterIdle" file="$data/sounds/placeables/carpenterIdle.wav" innerRadius="3.00" outerRadius="32.00" fadeOut="0.1" volumeScale="2.3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="carpenterWork" file="$data/sounds/placeables/carpenterWork.wav" innerRadius="5.00" outerRadius="35.00" fadeOut="0.1" volumeScale="2.4" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="dairyIdle" file="$data/sounds/placeables/dairyIdle.wav" innerRadius="7.00" outerRadius="35" fadeOut="0.1" volumeScale="1.5" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="dairyWork" file="$data/sounds/placeables/dairyWork.wav" innerRadius="7.00" outerRadius="35.00" fadeOut="0.1" volumeScale="2.8" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="grainMillIdle" file="$data/sounds/placeables/grainMillIdle.wav" innerRadius="7.00" outerRadius="35.00" fadeOut="0.1" volumeScale="2" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="grainMillWork" file="$data/sounds/placeables/grainMillWork.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="2.8" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="spinneryIdle" file="$data/sounds/placeables/spinneryIdle.wav" innerRadius="9.00" outerRadius="30.00" fadeOut="0.1" volumeScale="1.5" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="spinneryWork" file="$data/sounds/placeables/spinneryWork.wav" innerRadius="6.00" outerRadius="40.00" fadeOut="0.1" volumeScale="3.4" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="sugarMillIdle" file="$data/sounds/placeables/sugarMillIdle.wav" innerRadius="7.00" outerRadius="33.00" fadeOut="0.1" volumeScale="3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="sugarMillWork" file="$data/sounds/placeables/sugarMillWork.wav" innerRadius="7.00" outerRadius="43.00" fadeOut="0.1" volumeScale="3.6" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="tailorShopIdle" file="$data/sounds/placeables/tailorShopIdle.wav" innerRadius="5.00" outerRadius="20.00" fadeOut="0.1" volumeScale="1.4" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="tailorShopWork" file="$data/sounds/placeables/tailorShopWork.wav" innerRadius="8.00" outerRadius="35.00" fadeOut="0.1" volumeScale="2.4" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="cerealFactoryIdle" file="$data/sounds/placeables/cerealFactoryIdle.wav" innerRadius="5.00" outerRadius="35.00" fadeOut="0.1" volumeScale="2.6" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="cerealFactoryWork" file="$data/sounds/placeables/cerealFactoryWork.wav" innerRadius="6.00" outerRadius="45.00" fadeOut="0.1" volumeScale="2.4" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="oilPlantIdle" file="$data/sounds/placeables/oilPlantIdle.wav" innerRadius="5.00" outerRadius="32.00" fadeOut="0.1" volumeScale="2.6" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="oilPlantWork" file="$data/sounds/placeables/oilPlantWork.wav" innerRadius="8.00" outerRadius="45.00" fadeOut="0.1" volumeScale="2.9" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="raisinIdle" file="$data/sounds/placeables/raisinIdle.wav" innerRadius="5.00" outerRadius="38.00" fadeOut="0.1" volumeScale="0.9" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="raisinWork" file="$data/sounds/placeables/raisinWork.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <!--SellingStations-->
+
+    <template name="storeTemplate" file="$data/sounds/placeables/storeLoop.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="farmersMarket" parent="storeTemplate" innerRadius="5" outerRadius="45" volumeScale="1" pitchScale="1" />
+
+    <template name="restaurantTemplate" file="$data/sounds/placeables/restaurantLoop.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="pizzeria" parent="restaurantTemplate" innerRadius="5" outerRadius="45" volumeScale="1" pitchScale="1" />
+
+    <template name="biogasPlantTemplate" file="$data/sounds/placeables/bioGasPlant.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="fastFoodRestaurantTemplate" file="$data/sounds/placeables/fastFoodRestaurant.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="debrisCrusherIdle" file="$data/sounds/placeables/debrisCrusherIdle.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="3" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <template name="debrisCrusherWork" file="$data/sounds/placeables/debrisCrusherWorking.wav" innerRadius="5.00" outerRadius="45.00" fadeOut="0.1" volumeScale="2" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <!-- SILOS -->
+
+    <template name="hayloftPump" file="$data/sounds/placeables/hayLoftWork.wav" innerRadius="8.00" outerRadius="60.00" fadeIn="0.4" fadeOut="0.4" volumeScale="2" loops="0" >
+        <randomization minVolume="-0.25" maxVolume="0.25" minPitch="-0.2" maxPitch="0.2" isInside="false" isOutside="true" />
+    </template>
+
+    <!-- TRAIN CROSSING BELL -->
+    <template name="TRAIN_CROSSING_BELL_01" file="$data/sounds/shared/train_crossing_bell_loop_01.wav" innerRadius="10.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.50" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- TRAIN SURFACE SOUND -->
+    <template name="DEFAULT_SURFACE_RAILROAD" file="$data/sounds/shared/train_wheels_01_loop.wav" innerRadius="7.0" outerRadius="60.0" >
+        <volume indoor="0.40" outdoor="0.90" >
+            <modifier type="SPEED" value="0.00" modifiedValue="0.00" />
+            <modifier type="SPEED" value="5.00" modifiedValue="0.80" />
+            <modifier type="SPEED" value="15.0" modifiedValue="1.00" />
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="SPEED" value="0.00" modifiedValue="0.80" />
+            <modifier type="SPEED" value="23.0" modifiedValue="1.00" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <sourceRandomization file="$data/sounds/shared/train_wheels_02_loop.wav"/>
+        <sourceRandomization file="$data/sounds/shared/train_wheels_03_loop.wav"/>
+        <sourceRandomization file="$data/sounds/shared/train_wheels_04_loop.wav"/>
+    </template>
+
+    <!-- GLOBAL SOUNDS -->
+    <!-- Attachments -->
+    <template name="ATTACH_01" file="$data/sounds/vehicles/shared/attach_02.wav" innerRadius="3.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="1.7" />
+        <pitch indoor="0.8" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.2" maxVolume="0.2" minPitch="-0.01" maxPitch="0.01" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="ATTACH_BigBag" file="$data/sounds/vehicles/shared/bagLiftAttach01.wav" innerRadius="3.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="1.7" />
+        <pitch indoor="0.8" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.2" maxVolume="0.2" minPitch="-0.01" maxPitch="0.01" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="HEADER_ATTACH_01" file="$data/sounds/vehicles/shared/header_attach_02.wav" innerRadius="3.0" outerRadius="60" pitchScale="0.6">
+        <volume indoor="0.40" outdoor="3.5" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="truckAttach" file="$data/sounds/vehicles/shared/truckAttach.wav" volumeScale="8" innerRadius="8.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="truckAttachDelay" file="$data/sounds/vehicles/shared/truckAttachDelay.wav" volumeScale="8" innerRadius="8.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="truckDetach" file="$data/sounds/vehicles/shared/truckDetach.wav" volumeScale="7" innerRadius="8.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="TRUCK_ATTACH_01" file="$data/sounds/vehicles/shared/truck_attach_01.wav" innerRadius="5.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="0.90" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="TRUCK_ATTACH_02" file="$data/sounds/vehicles/shared/truck_attach_01.wav" innerRadius="5.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="0.90" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="TRUCK_ATTACH_03" file="$data/sounds/vehicles/shared/truck_attach_01.wav" innerRadius="5.0" outerRadius="60" >
+        <volume indoor="0.40" outdoor="0.90" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="PICKUP_TRUNK" file="$data/sounds/vehicles/shared/pickup_trunk.wav" innerRadius="10.0" outerRadius="45.0" >
+        <volume indoor="0.40" outdoor="0.90" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- FILL LOOPS-->
+    <template name="DEFAULT_SILO_FILL" file="$data/sounds/tools/fillTypes/siloFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="grainSmallFill" file="$data/sounds/tools/fillTypes/grainSmallFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="grainMediumFill" file="$data/sounds/tools/fillTypes/grainMediumFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="grainLargeFill" file="$data/sounds/tools/fillTypes/grainLargeFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="grapeFill" file="$data/sounds/tools/fillTypes/grapeFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="oliveFill" file="$data/sounds/tools/fillTypes/grapeFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="grassFill" file="$data/sounds/tools/fillTypes/grassFillLoop1.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/grassFillLoop2.wav"/>
+    </template>
+
+    <template name="dustFill" file="$data/sounds/tools/fillTypes/grassFillLoop1.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.05" outdoor="0.20" />
+        <pitch indoor="2.0" outdoor="2.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/grassFillLoop2.wav"/>
+    </template>
+
+    <template name="gravelFill" file="$data/sounds/tools/fillTypes/gravelFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="manureFill" file="$data/sounds/tools/fillTypes/woodchipFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="0.6" outdoor="0.6" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="potatoFill" file="$data/sounds/tools/fillTypes/potatoFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="1.8" outdoor="3.50" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="strawFill" file="$data/sounds/tools/fillTypes/grassFillLoop1.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="0.5" outdoor="0.6" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/grassFillLoop2.wav"/>
+    </template>
+
+    <template name="sugarcaneFill" file="$data/sounds/tools/fillTypes/woodchipFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.1" outdoor="1.1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="woodchipFill" file="$data/sounds/tools/fillTypes/woodchipFillLoop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.5" fadeOut="1.0">
+        <volume indoor="0.1" outdoor="0.35" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="0.2" maxVolume="0.2" minPitch="-0.2" maxPitch="0.2" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="palletsFillPlastic" file="$data/sounds/tools/fillTypes/palletsPlastic1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsPlastic2.wav"/>
+    </template>
+
+    <template name="palletsFillBag" file="$data/sounds/tools/fillTypes/palletsBag1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1.2" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsBag2.wav"/>
+    </template>
+
+    <template name="palletsFillSugar" file="$data/sounds/tools/fillTypes/palletsSugar1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2" />
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsSugar2.wav"/>
+    </template>
+
+    <template name="palletsFillWood" file="$data/sounds/tools/fillTypes/palletsWood1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2" />
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsWood2.wav"/>
+    </template>
+
+    <template name="palletsFillOil" file="$data/sounds/tools/fillTypes/palletsOil1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsOil2.wav"/>
+    </template>
+
+    <template name="palletsFillJuice" file="$data/sounds/tools/fillTypes/palletsJuice1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsJuice2.wav"/>
+    </template>
+
+    <template name="palletsFillPaper" file="$data/sounds/tools/fillTypes/palletsPaper1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="0.7" />
+        <pitch indoor="1" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.1" maxPitch="0.1"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsPaper2.wav"/>
+    </template>
+
+    <template name="palletsFillFabric" file="$data/sounds/tools/fillTypes/palletsFabric1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsFabric2.wav"/>
+    </template>
+
+    <template name="palletsFillCereal" file="$data/sounds/tools/fillTypes/palletsCereal1.wav" innerRadius="5.0" outerRadius="22.0" >
+        <volume indoor="0.20" outdoor="1.0" />
+        <pitch indoor="1" outdoor="1" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization isInside="true" isOutside="true" minPitch="-0.2" maxPitch="0.2"/>
+        <sourceRandomization file="$data/sounds/tools/fillTypes/palletsCereal2.wav"/>
+    </template>
+
+    <!-- MIXER SILAGE FEEDER -->
+
+    <template name="mixerLoop" file="$data/sounds/tools/mixer/mixerLoop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.5" outdoor="2.80" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="mixerHeaderStart" file="$data/sounds/tools/mixer/mixerHeaderStart.wav" innerRadius="5.0" outerRadius="60.0" fadeIn="0.1" fadeOut="0.1" >
+        <volume indoor="0.5" outdoor="1.50" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="mixerHeaderStop" file="$data/sounds/tools/mixer/mixerHeaderStop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.5" outdoor="1.50" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="mixerHeaderLoop" file="$data/sounds/tools/mixer/mixerHeaderLoop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.2">
+        <volume indoor="0.5" outdoor="1.50" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="SILAGE_MIX_START_01" file="$data/sounds/tools/mixer/silage_mixer_start_01.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="SILAGE_MIX_STOP_01" file="$data/sounds/tools/mixer/silage_mixer_stop_01.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="SILAGE_MIX_LOOP_01" file="$data/sounds/tools/mixer/silage_mixer_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- Moving parts -->
+    <template name="MOVING_PART_SOUND" file="$data/sounds/vehicles/hydraulic/moving_parts.wav" innerRadius="7.5" outerRadius="45.0" fadeOut="0.2">
+        <volume indoor="0.24" outdoor="0.65" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="rotationLoop" file="$data/sounds/tools/harvest/rotationLoop.wav" innerRadius="1.0" outerRadius="30.0" fadeOut="0.2">
+        <volume indoor="0.50" outdoor="1.70" >
+            <modifier type="MOTOR_LOAD" value="0.0"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.3"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.4"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.5"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.60"   modifiedValue="1.50" />
+            <modifier type="MOTOR_LOAD" value="1.00"   modifiedValue="1.50" />
+
+            <modifier type="MOTOR_RPM_REAL" value="0"      modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM_REAL" value="1700"   modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM_REAL" value="1880"   modifiedValue="1.50" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="filterLoop" file="$data/sounds/tools/harvest/filterLoop.wav" innerRadius="1.0" outerRadius="30.0" fadeOut="0.2">
+        <volume indoor="0.50" outdoor="2.00" >
+            <modifier type="MOTOR_LOAD" value="0.0"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.3"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.4"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.5"    modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="0.60"   modifiedValue="1.50" />
+            <modifier type="MOTOR_LOAD" value="1.00"   modifiedValue="1.50" />
+
+            <modifier type="MOTOR_RPM_REAL" value="0"      modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM_REAL" value="1700"   modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM_REAL" value="1880"   modifiedValue="1.50" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- Pressure Washer -->
+    <template name="PRESSURE_WASHER_SWITCH_01" file="$data/sounds/tools/pressure_wash/pressure_washer_switch_01.wav" innerRadius="5.0" outerRadius="30.0" >
+       <volume indoor="0.1" outdoor="0.40" />
+       <pitch indoor="1.00" outdoor="1.00" />
+       <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+    <template name="PRESSURE_WASHER_RUN_01" file="$data/sounds/tools/pressure_wash/pressure_washer_run_loop_01.wav" innerRadius="5.0" outerRadius="30.0" fadeOut="0.1">
+        <volume indoor="0.1" outdoor="0.40" >
+            <modifier type="HIGH_PRESSURE_WASHER_LOAD" value="0.0" modifiedValue="0.0" />
+            <modifier type="HIGH_PRESSURE_WASHER_LOAD" value="1.0" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="HIGH_PRESSURE_WASHER_LOAD" value="0.0" modifiedValue="0.8" />
+            <modifier type="HIGH_PRESSURE_WASHER_LOAD" value="1.0" modifiedValue="1.0" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="PRESSURE_WASHER_WASHING_01" file="$data/sounds/tools/pressure_wash/pressure_washer_washing_loop_01.wav" innerRadius="5.0" outerRadius="30.0" fadeOut="0.1" >
+        <volume indoor="0.1" outdoor="0.50" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!--Electric Charging Station-->
+    <template name="ELECTRIC_CHARGING_STATION" file="$data/sounds/placeables/electric_station_recharging_loop_1.wav" innerRadius="5.0" outerRadius="30.0" fadeOut="0.1" >
+        <volume indoor="0.1" outdoor="0.50" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- DEFOLIATOR -->
+    <template name="DEFOLIATOR_01" file="$data/sounds/tools/defoliator/defoliator_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.30" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- WEEDER -->
+    <template name="WEEDER_01" file="$data/sounds/tools/weeder/weeder_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.50" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- FORAGE -->
+    <template name="FORAGE_WAGON_01" file="$data/sounds/tools/forage/forage_wagon_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.10" outdoor="0.30" />
+            <pitch indoor="1.00" outdoor="1.00" >
+                <loadModifier load="0.00" percentage="1.00" />
+                <loadModifier load="1.00" percentage="0.90" />
+            </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- POTTINGER FORAGE -->
+    <template name="MEX5_FORAGE_START" file="$data/sounds/tools/forage/pottinger_mex5_work_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.2" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="MEX5_FORAGE_WORK" file="$data/sounds/tools/forage/pottinger_mex5_work_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.2" outdoor="1.2" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="MEX5_FORAGE_STOP" file="$data/sounds/tools/forage/pottinger_mex5_work_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.2" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- MOWER -->
+    <template name="DEFAULT_MOWER_START" file="$data/sounds/tools/mower/mower_start_long_01.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="1.0" outdoor="2.0" />
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOWER_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOWER_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.8" outdoor="1.0" />
+    </template>
+    <template name="DEFAULT_MOWER_START_SHORT" file="$data/sounds/tools/mower/mower_start_short_01.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="1.0" outdoor="2.0" />
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOWER_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOWER_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.8" outdoor="1.0" />
+    </template>
+    <template name="DEFAULT_MOWER_STOP" file="$data/sounds/tools/mower/mower_stop_01.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="1.0" outdoor="2.0" />
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOWER_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOWER_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.8" outdoor="1.0" />
+    </template>
+    <template name="DEFAULT_MOWER_WORK" file="$data/sounds/tools/mower/mower_work_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="1.0" outdoor="2.0" />
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOWER_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOWER_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.8" outdoor="1.0" />
+    </template>
+
+<!--Stone Picker-->
+
+    <template name="ROCKS_UNLOAD" file="$data/sounds/tools/fillTypes/rocksFillLoop.wav" loops="0" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.2" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- Refuel -->
+    <template name="DEFAULT_REFUEL_SOUND" file="$data/sounds/vehicles/shared/refuel_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- Interior switches and buttons -->
+    <template name="SWITCH_01" file="$data/sounds/vehicles/switch/switch_01.wav" innerRadius="2.0" outerRadius="30.0" >
+        <volume indoor="0.3" outdoor="0.15" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="0.50" />
+    </template>
+    <template name="SWITCH_TURNLIGHT" file="$data/sounds/vehicles/switch/blinker_01.wav" innerRadius="2.0" outerRadius="15.0" >
+        <volume indoor="0.8" outdoor="0.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="0.50" />
+    </template>
+    <template name="SWITCH_TURNLIGHT_OPENCABIN" file="$data/sounds/vehicles/switch/blinker_01.wav" innerRadius="2.0" outerRadius="10.0" >
+        <volume indoor="0.8" outdoor="0.8" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="0.50" />
+    </template>
+    <template name="SWITCH_TURNLIGHT_JD" file="$data/sounds/vehicles/switch/jd_blinker.wav" innerRadius="2.0" outerRadius="15.0" >
+        <volume indoor="0.8" outdoor="0.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="0.50" />
+    </template>
+
+    <!-- Horn -->
+    <template name="hornDefault" file="$data/sounds/vehicles/horn/hornDefault.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="hornJcb" file="$data/sounds/vehicles/horn/jcbHornLoop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="hornRigitracSke50" file="$data/sounds/vehicles/horn/rigitrac_Ske50_hornLoop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+     <template name="hornRigitracSkh75" file="$data/sounds/vehicles/horn/rigitrac_skh75_hornLoop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_FENDT511C" file="$data/sounds/vehicles/horn/fendt_511c_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_NH_TX32" file="$data/sounds/vehicles/horn/new_holland_tx32_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_NH_W190" file="$data/sounds/vehicles/horn/new_holland_w190_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_CLAAS_JAGUAR" file="$data/sounds/vehicles/horn/claas_jaguar_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="1.2" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_CLAAS_XERION" file="$data/sounds/vehicles/horn/claas_xerion_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="1" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_KRONE_BIGM" file="$data/sounds/vehicles/horn/krone_bigm_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_JD8400R" file="$data/sounds/vehicles/horn/john_deere_8400r_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_JD6145M" file="$data/sounds/vehicles/horn/john_deere_6145m_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_JD6250R" file="$data/sounds/vehicles/horn/john_deere_6250r_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_JD_GATOR" file="$data/sounds/vehicles/horn/john_deere_gator_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_JD_HARVESTER" file="$data/sounds/vehicles/horn/john_deere_harvester_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_KOMATSU" file="$data/sounds/vehicles/horn/komatsu_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_GRIMME" file="$data/sounds/vehicles/horn/grimme_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.55" outdoor="1.65" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_KRAMER" file="$data/sounds/vehicles/horn/kramer_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_ROPA" file="$data/sounds/vehicles/horn/ropa_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.55" outdoor="1.6" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_MANITOU" file="$data/sounds/vehicles/horn/manitou_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="1.00" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_IDEAL9T" file="$data/sounds/vehicles/horn/ideal_9t_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="2.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_MF_HARVESTER" file="$data/sounds/vehicles/horn/mf_harvester_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_VALTRA" file="$data/sounds/vehicles/horn/valtra_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_STEYR" file="$data/sounds/vehicles/horn/steyr_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_NEW_HOLLAND_TRACTOR" file="$data/sounds/vehicles/horn/new_holland_tractor_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_NEW_HOLLAND_HARVESTER" file="$data/sounds/vehicles/horn/new_holland_harvester_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_MF_SMALL_TRACTOR" file="$data/sounds/vehicles/horn/mf_small_tractor_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_CASEIH_TRACTOR" file="$data/sounds/vehicles/horn/case_ih_tractor_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_CASEIH_MAXXUM" file="$data/sounds/vehicles/horn/case_ih_maxxum_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_MF_BIG_TRACTOR" file="$data/sounds/vehicles/horn/mf_big_tractor_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_TRUCK" file="$data/sounds/vehicles/horn/truck_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03" >
+        <volume indoor="0.35" outdoor="2.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_LIZARD_TRUCK" file="$data/sounds/vehicles/horn/lizard_truck_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03" >
+        <volume indoor="0.55" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_PICKUP_2014" file="$data/sounds/vehicles/horn/pickup_2014_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_PICKUP" file="$data/sounds/vehicles/horn/pickup_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <template name="HONK_TRAIN" file="$data/sounds/vehicles/horn/train_horn_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.03">
+        <volume indoor="0.50" outdoor="1.50" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.75" outdoor="1.0" />
+    </template>
+
+    <!-- Reverse beep -->
+    <template name="REVERSE_BEEP_01" file="$data/sounds/vehicles/reverse_beep/reverse_beep_01.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.05">
+        <volume indoor="0.25" outdoor="1.10"/>
+        <pitch indoor="1.0" outdoor="1.0"/>
+        <lowpassGain indoor="0.5" outdoor="1.0" />
+    </template>
+    <template name="REVERSE_BEEP_03" file="$data/sounds/vehicles/reverse_beep/reverse_beep_03.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.05">
+        <volume indoor="0.25" outdoor="1.4"/>
+        <pitch indoor="1.0" outdoor="1.0"/>
+        <lowpassGain indoor="0.5" outdoor="1.0" />
+    </template>
+    <template name="KOMATSU_REVERSE_BEEP" file="$data/sounds/vehicles/reverse_beep/komatsu_reverse_beep_loop.wav" innerRadius="1.0" outerRadius="70.0" fadeOut="0.05">
+        <volume indoor="0.25" outdoor="1.0"/>
+        <pitch indoor="1.0" outdoor="1.0"/>
+        <lowpassGain indoor="0.5" outdoor="1.0" />
+    </template>
+
+    <!-- DEFAULT ENGINE SOUNDS -->
+    <template name="DEFAULT_MOTOR" innerRadius="5.0" outerRadius="80.0" >
+        <volume indoor="0.25" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+
+            <modifier type="MOWER_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOWER_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.5" outdoor="1.0" />
+    </template>
+
+    <template name="DEFAULT_MOTOR_START" parent="DEFAULT_MOTOR" />
+    <template name="DEFAULT_MOTOR_STOP" parent="DEFAULT_MOTOR" />
+
+    <template name="DEFAULT_MOTOR_IDLE" parent="DEFAULT_MOTOR" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.80" modifiedValue="0.00" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.75" modifiedValue="2.00" />
+        </pitch>
+    </template>
+    <template name="DEFAULT_MOTOR_RUN" parent="DEFAULT_MOTOR" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="0.00" />
+            <modifier type="MOTOR_RPM" value="0.80" modifiedValue="1.00" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.25" modifiedValue="0.75" />
+            <modifier type="MOTOR_RPM" value="1.00" modifiedValue="1.00" />
+        </pitch>
+    </template>
+    <template name="DEFAULT_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_RUN" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="0.00" />
+        </volume>
+    </template>
+    <template name="DEFAULT_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_RUN" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="0.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="1.20" />
+        </volume>
+        <pitch indoor="1.15" outdoor="1.15" />
+    </template>
+
+    <template name="DEFAULT_MOTOR_IDLE_TO_MID" parent="DEFAULT_MOTOR" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.45" modifiedValue="0.00" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00"  modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.45" modifiedValue="2.00" />
+        </pitch>
+    </template>
+    <template name="DEFAULT_MOTOR_MID" parent="DEFAULT_MOTOR" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="0.00" />
+            <modifier type="MOTOR_RPM" value="0.45" modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.85" modifiedValue="0.00" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="0.75" />
+            <modifier type="MOTOR_RPM" value="0.45" modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.85" modifiedValue="1.25" />
+        </pitch>
+    </template>
+    <template name="DEFAULT_MOTOR_MID_TO_RUN" parent="DEFAULT_MOTOR" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.45" modifiedValue="0.00" />
+            <modifier type="MOTOR_RPM" value="0.85" modifiedValue="1.00" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.45" modifiedValue="0.75" />
+            <modifier type="MOTOR_RPM" value="0.85" modifiedValue="1.00" />
+        </pitch>
+    </template>
+
+
+    <template name="DEFAULT_MOTOR_OFFLOAD_MID" parent="DEFAULT_MOTOR_MID" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="0.00" />
+        </volume>
+    </template>
+    <template name="DEFAULT_MOTOR_OFFLOAD_MID_TO_RUN" parent="DEFAULT_MOTOR_MID_TO_RUN" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="0.00" />
+        </volume>
+    </template>
+
+    <template name="DEFAULT_MOTOR_ONLOAD_MID" parent="DEFAULT_MOTOR_MID" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="0.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="1.00" />
+        </volume>
+    </template>
+    <template name="DEFAULT_MOTOR_ONLOAD_MID_TO_RUN" parent="DEFAULT_MOTOR_MID_TO_RUN" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="0.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="1.00" />
+        </volume>
+    </template>
+
+    <template name="DEFAULT_RETARDER" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.10" outdoor="0.40" >
+            <modifier type="SPEED" value="0.0" modifiedValue="0.0" />
+            <modifier type="SPEED" value="50.0" modifiedValue="1.0" />
+            <modifier type="ACCELERATE" value="0" modifiedValue="1.0" />
+            <modifier type="ACCELERATE" value="0.01" modifiedValue="0.0" />
+            <modifier type="CRUISECONTROL" value="0" modifiedValue="1.0" />
+            <modifier type="CRUISECONTROL" value="0.01" modifiedValue="0.0" />
+        </volume>
+        <pitch indoor="0.5" outdoor="0.5" >
+            <modifier type="SPEED" value="0.0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="50.0" modifiedValue="3.0" />
+        </pitch>
+        <lowpassGain indoor="0.6" outdoor="1.0" />
+    </template>
+
+    <template name="DEFAULT_CLUTCH_CRACKING" file="$data/sounds/animations/loops/loopLayer3.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="0.75" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.5" outdoor="1.0" />
+    </template>
+
+    <template name="DEFAULT_BLOW_OFF_VALVE" file="$data/sounds/vehicles/turbo/turbo_loop_2.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="2">
+            <modifier type="BLOW_OFF_VALVE_STATE" value="0.0" modifiedValue="0.0" />
+            <modifier type="BLOW_OFF_VALVE_STATE" value="0.2" modifiedValue="0.5" />
+            <modifier type="BLOW_OFF_VALVE_STATE" value="1.0" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.0" modifiedValue="0.7" />
+            <modifier type="MOTOR_RPM" value="1.0" modifiedValue="0.8" />
+        </pitch>
+        <lowpassGain indoor="0.5" outdoor="1.0" />
+    </template>
+
+    <!-- SMALL TRACTOR ENGINE SOUNDS -->
+
+    <template name="SMALL_TRACTOR_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="3.0" outerRadius="60.0"/>
+    <template name="SMALL_TRACTOR_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="3.0" outerRadius="60.0"/>
+
+    <template name="SMALL_TRACTOR_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="3.0" outerRadius="60.0"/>
+    <template name="SMALL_TRACTOR_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="3.0" outerRadius="60.0"/>
+    <template name="SMALL_TRACTOR_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="3.0" outerRadius="60.0" />
+
+    <!-- MEDIUM TRACTOR ENGINE SOUNDS -->
+
+    <template name="MEDIUM_TRACTOR_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="4.0" outerRadius="65.0"/>
+    <template name="MEDIUM_TRACTOR_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="4.0" outerRadius="65.0"/>
+
+    <template name="MEDIUM_TRACTOR_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="4.0" outerRadius="65.0"/>
+    <template name="MEDIUM_TRACTOR_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="4.0" outerRadius="65.0"/>
+    <template name="MEDIUM_TRACTOR_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="4.0" outerRadius="65.0"/>
+
+    <!-- LARGE TRACTOR ENGINE SOUNDS -->
+
+    <template name="LARGE_TRACTOR_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="LARGE_TRACTOR_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="5.0" outerRadius="70.0"/>
+
+    <template name="LARGE_TRACTOR_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="LARGE_TRACTOR_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="LARGE_TRACTOR_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="5.0" outerRadius="70.0"/>
+
+    <!-- FENDT900 TRACTOR ENGINE SOUNDS -->
+
+    <template name="FENDT900_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="5.0" outerRadius="70.0">
+        <pitch indoor="0.75" outdoor="0.75" />
+    </template>
+
+    <template name="FENDT900_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="5.0" outerRadius="70.0">
+        <pitch indoor="0.8" outdoor="0.8" />
+    </template>
+
+    <!-- TRUCK ENGINE SOUNDS -->
+
+    <template name="TRUCK_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="TRUCK_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="5.0" outerRadius="70.0"/>
+
+
+    <template name="TRUCK_MOTOR_IDLE" parent="DEFAULT_MOTOR" innerRadius="5.0" outerRadius="70.0" >
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.80" modifiedValue="0.60" />
+            <modifier type="MOTOR_RPM" value="1.00" modifiedValue="0.00" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="1.00" />
+            <modifier type="MOTOR_RPM" value="0.75" modifiedValue="2.00" />
+        </pitch>
+    </template>
+
+    <template name="TRUCK_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR" innerRadius="5.0" outerRadius="70.0">
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="0.00" />
+            <modifier type="MOTOR_RPM" value="0.10" modifiedValue="0.50" />
+            <modifier type="MOTOR_RPM" value="0.80" modifiedValue="1.00" />
+
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="1.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="0.00" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED"      value="15"   modifiedValue="0.55" />
+            <modifier type="SPEED"      value="80"   modifiedValue="1.00" />
+
+            <modifier type="MOTOR_RPM" value="0.25" modifiedValue="0.75" />
+            <modifier type="MOTOR_RPM" value="1.00" modifiedValue="1.00" />
+        </pitch>
+    </template>
+
+    <template name="TRUCK_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR" innerRadius="5.0" outerRadius="70.0">
+        <volume indoor="0.25" outdoor="1.0" >
+            <modifier type="MOTOR_RPM" value="0.00" modifiedValue="0.00" />
+            <modifier type="MOTOR_RPM" value="0.80" modifiedValue="1.00" />
+
+            <modifier type="MOTOR_LOAD" value="0.0" modifiedValue="0.00" />
+            <modifier type="MOTOR_LOAD" value="1.0" modifiedValue="1.20" />
+        </volume>
+        <pitch indoor="1.15" outdoor="1.15" >
+            <modifier type="SPEED"      value="15"   modifiedValue="0.55" />
+            <modifier type="SPEED"      value="80"   modifiedValue="1.00" />
+
+            <modifier type="MOTOR_RPM" value="0.25" modifiedValue="0.75" />
+            <modifier type="MOTOR_RPM" value="1.00" modifiedValue="1.00" />
+        </pitch>
+    </template>
+
+    <!-- HARVESTER ENGINE SOUNDS -->
+
+    <template name="HARVESTER_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="HARVESTER_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="5.0" outerRadius="70.0"/>
+
+    <template name="HARVESTER_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="HARVESTER_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="HARVESTER_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="5.0" outerRadius="70.0"/>
+
+    <!-- SPRAYER ENGINE SOUNDS -->
+
+    <template name="SPRAYER_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="SPRAYER_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="5.0" outerRadius="70.0"/>
+
+    <template name="SPRAYER_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="SPRAYER_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="SPRAYER_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="5.0" outerRadius="70.0"/>
+
+    <!-- CAR ENGINE SOUNDS -->
+
+    <template name="CAR_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="CAR_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP"   innerRadius="5.0" outerRadius="70.0"/>
+
+    <template name="CAR_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="5.0" outerRadius="70.0"/>
+    <template name="CAR_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="5.0" outerRadius="70.0">
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED"      value="15.0"   modifiedValue="0.65" />
+            <modifier type="SPEED"      value="120.0"  modifiedValue="1.20" />
+        </pitch>
+    </template>
+    <template name="CAR_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="5.0" outerRadius="70.0">
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED"      value="15.0"   modifiedValue="0.65" />
+            <modifier type="SPEED"      value="120.0"  modifiedValue="1.20" />
+        </pitch>
+    </template>
+
+
+    <!-- UTV ENGINE SOUNDS -->
+
+    <template name="UTV_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="5.0" outerRadius="60.0"/>
+    <template name="UTV_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="5.0" outerRadius="60.0"/>
+
+    <template name="UTV_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="5.0" outerRadius="60.0"/>
+    <template name="UTV_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="5.0" outerRadius="60.0">
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED"      value="15"   modifiedValue="0.65" />
+            <modifier type="SPEED"      value="100"  modifiedValue="0.90" />
+        </pitch>
+    </template>
+
+    <template name="UTV_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="5.0" outerRadius="60.0">
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED"      value="15"   modifiedValue="0.65" />
+            <modifier type="SPEED"      value="100"  modifiedValue="0.90" />
+        </pitch>
+    </template>
+
+    <!-- GATOR ENGINE SOUNDS -->
+
+    <template name="GATOR_MOTOR_START" parent="DEFAULT_MOTOR_START" innerRadius="5.0" outerRadius="60.0"/>
+    <template name="GATOR_MOTOR_STOP" parent="DEFAULT_MOTOR_STOP" innerRadius="5.0" outerRadius="60.0"/>
+
+    <template name="GATOR_MOTOR_IDLE" parent="DEFAULT_MOTOR_IDLE" innerRadius="5.0" outerRadius="60.0"/>
+    <template name="GATOR_MOTOR_OFFLOAD_RUN" parent="DEFAULT_MOTOR_OFFLOAD_RUN" innerRadius="5.0" outerRadius="60.0">
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED"      value="15"   modifiedValue="0.80" />
+            <modifier type="SPEED"      value="60"  modifiedValue="1.20" />
+        </pitch>
+    </template>
+
+    <template name="GATOR_MOTOR_ONLOAD_RUN" parent="DEFAULT_MOTOR_ONLOAD_RUN" innerRadius="5.0" outerRadius="60.0">
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED"      value="15"   modifiedValue="0.80" />
+            <modifier type="SPEED"      value="60"  modifiedValue="1.20" />
+        </pitch>
+    </template>
+
+    <!-- DEFAULT BRAKE SOUNDS -->
+
+    <template name="BRAKE_SMALL" file="$data/sounds/vehicles/brake/brake_small.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="1.00">
+            <modifier type="BRAKE_TIME" value="0.0" modifiedValue="0.0" />
+            <modifier type="BRAKE_TIME" value="1.0" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+    <template name="BRAKE_BIG" file="$data/sounds/vehicles/brake/brake_big.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="1.00">
+            <modifier type="BRAKE_TIME" value="0.0" modifiedValue="0.0" />
+            <modifier type="BRAKE_TIME" value="1.0" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+    <template name="BRAKE_REGULATOR_VALVE" file="$data/sounds/vehicles/compressor/regulator_valve_01.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="0.75" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+    <template name="BRAKE_BIZON" file="$data/sounds/vehicles/brake/fmz_bizon_brake.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="0.80" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <!-- DEFAULT TRUCK BRAKE COMPRESSOR SOUNDS -->
+    <template name="TRUCK_BRAKE_COMPRESSOR_START" file="$data/sounds/vehicles/compressor/truck_compressor_controller_01.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="0.20" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+    <template name="TRUCK_BRAKE_COMPRESSOR_STOP" file="$data/sounds/vehicles/compressor/truck_pressure_regulator_01.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="0.20" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <template name="TRUCK_BRAKE" file="$data/sounds/vehicles/brake/truck_brake_01.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="1.00">
+            <modifier type="BRAKE_TIME" value="0.0" modifiedValue="0.0" />
+            <modifier type="BRAKE_TIME" value="1.0" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+    <template name="TRUCK_BRAKE_REGULATOR_VALVE" file="$data/sounds/vehicles/compressor/truck_regulator_valve_01.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.25" outdoor="1.00" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.0" />
+    </template>
+
+    <!-- DEFAULT PLOW SOUND -->
+    <template name="DEFAULT_PLOW_WORK" file="$data/sounds/tools/plow/plow_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.2" outdoor="1.5" >
+            <modifier type="SPEED" value="0.50" modifiedValue="0.0" />
+            <modifier type="SPEED" value="5.00" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED" value="0.00" modifiedValue="0.8" />
+            <modifier type="SPEED" value="10.0" modifiedValue="1.2" />
+        </pitch>
+        <lowpassGain indoor="0.30" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_PLOW_TURN" file="$data/sounds/tools/plow/plow_turn_loop.wav" innerRadius="5.0" outerRadius="30.0" fadeOut="0.1">
+        <volume indoor="0.55" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="0.50" />
+    </template>
+
+    <!-- DEFAULT CULTIVATOR SOUND -->
+    <template name="DEFAULT_CULTIVATOR_WORK" file="$data/sounds/tools/cultivator/cultivator_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.0" >
+            <modifier type="SPEED" value="0.50" modifiedValue="0.0" />
+            <modifier type="SPEED" value="5.00" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED" value="0.00" modifiedValue="0.8" />
+            <modifier type="SPEED" value="10.0" modifiedValue="1.2" />
+        </pitch>
+        <lowpassGain indoor="0.3" outdoor="1.0" />
+    </template>
+    <template name="DEFAULT_CULTIVATOR_HYDRAULICS" file="$data/sounds/tools/cultivator/cultivator_hydraulics_loop.wav"  innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.55" outdoor="1.00" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- MEADOW ROLLER SOUND -->
+    <template name="MEADOW_ROLLER_WORK" file="$data/sounds/tools/meadow_roller/meadow_roller_loop.wav" innerRadius="5.0" outerRadius="50.0" fadeOut="0.1">
+        <volume indoor="0.4" outdoor="2.5" >
+            <modifier type="SPEED" value="0.50" modifiedValue="0.0" />
+            <modifier type="SPEED" value="5.00" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="0.5" outdoor="0.5" >
+            <modifier type="SPEED" value="0.00" modifiedValue="1.5" />
+            <modifier type="SPEED" value="10.0" modifiedValue="1.7" />
+        </pitch>
+        <lowpassGain indoor="0.7" outdoor="1.0" />
+    </template>
+
+    <!-- DEFAULT SOWINGMACHINE SOUND -->
+    <template name="DEFAULT_SOWING_WORK" file="$data/sounds/tools/sowing/sowing_loop.wav"  innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.6" outdoor="1.0" >
+            <modifier type="SPEED" value="0.10" modifiedValue="0.0" />
+            <modifier type="SPEED" value="5.00" modifiedValue="1.0" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.7" outdoor="1.0" />
+    </template>
+    <template name="DEFAULT_SOWING_AIR_BLOWER" file="$data/sounds/tools/sowing/air_blower_loop.wav"  innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.2" outdoor="0.65" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.7" outdoor="1.0" />
+    </template>
+
+    <!-- TRAILER -->
+
+
+    <template name="fabricCover1" file="$data/sounds/tools/trailer/fabricCover01.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.15" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.2" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="fabricCover2" file="$data/sounds/tools/trailer/fabricCover02.wav" innerRadius="1.0" outerRadius="30.0" >
+        <volume indoor="0.15" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.2" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="beltOpen" file="$data/sounds/tools/forestry/beltOpen01.wav" innerRadius="2.0" outerRadius="30.0" >
+        <volume indoor="0.25" outdoor="2" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.2" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <template name="beltClose" file="$data/sounds/tools/forestry/beltClose01.wav" innerRadius="2.0" outerRadius="30.0" >
+        <volume indoor="0.25" outdoor="2" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+        <randomization minVolume="-0.2" maxVolume="0.1" minPitch="-0.1" maxPitch="0.1" isInside="true" isOutside="true"/>
+    </template>
+
+    <!-- TRAILER/AUGER DISCHARGE -->
+
+    <template name="augerBelt" file="$data/sounds/tools/auger/augerBeltLoop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="augerLoop" file="$data/sounds/tools/auger/augerLoop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="dischargeStart" file="$data/sounds/tools/trailer/dischargeStart.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="dischargeLoop" file="$data/sounds/tools/trailer/dischargeLoop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="dischargeStop" file="$data/sounds/tools/trailer/dischargeStop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="stonePickerLoop" file="$data/sounds/tools/harvest/stonePickerLoop.wav" innerRadius="5.0" outerRadius="60.0" fadeIn="0.4" fadeOut="0.4" >
+        <volume indoor="1" outdoor="5" />
+        <pitch indoor="0.8" outdoor="0.8" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- FORESTRY TOOLS -->
+    <template name="DEFAULT_HYDRAULIC_SAW_CUT" file="$data/sounds/tools/forestry/hydraulic_saw_cut_loop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_HYDRAULIC_SAW_START" file="$data/sounds/tools/forestry/hydraulic_saw_start.wav"  innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_HYDRAULIC_SAW_STOP" file="$data/sounds/tools/forestry/hydraulic_saw_stop.wav"  innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_HYDRAULIC_SAW_IDLE" file="$data/sounds/tools/forestry/hydraulic_saw_idle_loop.wav"  innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.45" outdoor="1.00" />
+    </template>
+
+    <template name="DEFAULT_TREE_CUT" file="$data/sounds/tools/forestry/tool_tree_cut_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_TREE_DELIMB" file="$data/sounds/tools/forestry/tool_tree_delimb_loop_01.wav"  innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.25" outdoor="1.00" />
+        <pitch indoor="0.95" outdoor="0.95" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="WOOD_CHIPPER_START" file="$data/sounds/tools/forestry/wood_chipper_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="1.70" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="WOOD_CHIPPER_STOP" file="$data/sounds/tools/forestry/wood_chipper_stop.wav"  innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="1.70" />
+        <pitch indoor="0.95" outdoor="0.95" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="WOOD_CHIPPER_IDLE" file="$data/sounds/tools/forestry/wood_chipper_idle_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.70" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="WOOD_CHIPPER_WORK" file="$data/sounds/tools/forestry/wood_chipper_work_loop.wav"  innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.70" />
+        <pitch indoor="0.95" outdoor="0.95" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STUMP_CUTTER_START" file="$data/sounds/tools/forestry/stump_cutter_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.25" outdoor="1.4" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STUMP_CUTTER_STOP" file="$data/sounds/tools/forestry/stump_cutter_stop.wav"  innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.25" outdoor="1.4" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STUMP_CUTTER_IDLE" file="$data/sounds/tools/forestry/stump_cutter_idle_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.25" outdoor="1.4" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STUMP_CUTTER_WORK" file="$data/sounds/tools/forestry/stump_cutter_work_loop.wav"  innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.25" outdoor="1.4" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- SPREADER + SPRAYER TOOLS -->
+    <template name="DEFAULT_SPREADER" file="$data/sounds/tools/spreader/spreader_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.1" outdoor="0.8" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SPRAYER" file="$data/sounds/tools/spreader/sprayer_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.1" outdoor="1.0" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- STRAWBLOWER -->
+    <template name="STRAWBLOWER_START" file="$data/sounds/tools/strawblower/strawblower_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STRAWBLOWER_STOP" file="$data/sounds/tools/strawblower/strawblower_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STRAWBLOWER_WORK" file="$data/sounds/tools/strawblower/strawblower_work_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="STRAWBLOWER_ANDERSON_START" file="$data/sounds/tools/strawblower/strawblower_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="1.20" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STRAWBLOWER_ANDERSON_STOP" file="$data/sounds/tools/strawblower/strawblower_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="1.20" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="STRAWBLOWER_ANDERSON_WORK" file="$data/sounds/tools/strawblower/strawblower_work_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.20" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- HARVESTING -->
+
+    <template name="cropCutting" file="$data/sounds/tools/harvest/cropCuttingLoop.wav" innerRadius="3.0" outerRadius="50.0" pitchScale="0.6" fadeIn="0.1" fadeOut="1.5">
+        <volume indoor="1.5" outdoor="1.0" />
+        <lowpassGain indoor="0.1" outdoor="1.00" />
+        <lowpassCutoffFrequency indoor="200.0" outdoor="20000.0" />
+        <randomization minVolume="0.1" maxVolume="0.05" minPitch="0.1" maxPitch="0.1" />
+        <sourceRandomization file="$data/sounds/tools/harvest/cropCuttingLoop2.wav"/>
+    </template>
+
+    <template name="dischargeForageHarvester" file="$data/sounds/tools/harvest/dischargeSoundForageHarvester.wav" innerRadius="1.0" outerRadius="27.0" pitchScale="1" fadeIn="0.1" fadeOut="0.5">
+        <volume indoor="1.5" outdoor="3" />
+        <lowpassGain indoor="0.1" outdoor="1.00" />
+        <lowpassCutoffFrequency indoor="200.0" outdoor="20000.0" />
+        <randomization minVolume="0.1" maxVolume="0.05" />
+    </template>
+
+    <template name="cropCuttingForage" file="$data/sounds/tools/harvest/cropCuttingLoop.wav" innerRadius="1.0" outerRadius="50.0" pitchScale="0.4" fadeIn="0.1" fadeOut="4.5">
+        <volume indoor="0.7" outdoor="1.25" />
+        <lowpassGain indoor="0.30" outdoor="1.00" />
+        <lowpassCutoffFrequency indoor="200.0" outdoor="20000.0" />
+        <randomization minVolume="0.1" maxVolume="0.05" minPitch="0.1" maxPitch="0.1" />
+        <sourceRandomization file="$data/sounds/tools/harvest/cropCuttingLoop2.wav"/>
+    </template>
+
+    <template name="chopStrawDischarge" file="$data/sounds/tools/harvest/chopStrawDischargeLoop.wav" innerRadius="1.0" outerRadius="45.0" pitchScale="1.2" fadeIn="0.1" fadeOut="0.6">
+        <volume indoor="0.3" outdoor="3.2" />
+        <lowpassGain indoor="0.70" outdoor="1.00" />
+        <randomization minVolume="0.1" maxVolume="0.05" minPitch="0.1" maxPitch="0.1" />
+    </template>
+
+    <template name="dropStrawDischarge" file="$data/sounds/tools/fillTypes/woodchipFillLoop.wav" innerRadius="1.0" outerRadius="50.0" pitchScale="1.1" fadeIn="0.1" fadeOut="1.0">
+        <volume indoor="0.3" outdoor="0.5" />
+        <lowpassGain indoor="0.70" outdoor="1.00" />
+        <randomization minVolume="0.1" maxVolume="0.05" minPitch="0.1" maxPitch="0.1" />
+    </template>
+
+    <!-- GRAPE HARVESTER TOOLS -->
+
+    <template name="grapeHarvesterStart" file="$data/sounds/tools/harvest/grapeHarvester_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.45" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.40" outdoor="1.00" />
+    </template>
+
+    <template name="grapeHarvesterWork" file="$data/sounds/tools/harvest/grapeHarvester_workLoop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.45" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.40" outdoor="1.00" />
+    </template>
+
+    <template name="grapeHarvesterStop" file="$data/sounds/tools/harvest/grapeHarvester_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.45" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.40" outdoor="1.00" />
+    </template>
+
+    <!-- HARVESTER TOOLS -->
+
+    <template name="HARVESTER_TOOL_START" file="$data/sounds/tools/harvest/combineHarvesterStart.wav" innerRadius="5.0" outerRadius="60" fadeIn="0.5" pitchScale="1.0">
+        <volume indoor="0.45" outdoor="2.1" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="HARVESTER_TOOL_WORK" file="$data/sounds/tools/harvest/combineHarvesterLoop.wav" innerRadius="5.0" outerRadius="60" pitchScale="1.0">
+        <volume indoor="0.45" outdoor="1.8" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="HARVESTER_TOOL_STOP" file="$data/sounds/tools/harvest/combineHarvesterStop.wav" innerRadius="5.0" outerRadius="60" pitchScale="1.0">
+        <volume indoor="0.45" outdoor="2.1" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="harvesterChopper" file="$data/sounds/tools/harvest/combineHarvesterLoop.wav" volumeScale="1.0" pitchScale="1.7" fadeIn="1" fadeOut="3" innerRadius="2.0" outerRadius="30">
+        <volume indoor="0.45" outdoor="1.8" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="harvesterHeaderRotateSpeed" file="$data/sounds/tools/harvest/forageHarvesterWorkHeaderLoop.wav" innerRadius="2.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.45" outdoor="1.40" >
+            <modifier type="SPEED" value="0.00" modifiedValue="0.00" />
+            <modifier type="SPEED" value="5.00" modifiedValue="1.00" />
+        </volume>
+        <pitch indoor="0.9" outdoor="1.1" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- HARVESTER TOOLS ROPA -->
+    <template name="HARVESTER_TOOL_ROPA_START" file="$data/sounds/tools/harvest/ropa_tiger6_work_start.wav" innerRadius="3.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="HARVESTER_TOOL_ROPA_WORK" file="$data/sounds/tools/harvest/ropa_tiger6_work_loop.wav" innerRadius="3.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="HARVESTER_TOOL_ROPA_STOP" file="$data/sounds/tools/harvest/ropa_tiger6_work_stop.wav" innerRadius="3.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <!-- HARVESTER TOOLS GRIMME -->
+    <template name="HARVESTER_TOOL_GRIMME_START" file="$data/sounds/tools/harvest/harvester_work_start.wav" innerRadius="3.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="HARVESTER_TOOL_GRIMME_WORK" file="$data/sounds/tools/harvest/harvester_work_loop.wav" innerRadius="3.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="HARVESTER_TOOL_GRIMME_STOP" file="$data/sounds/tools/harvest/harvester_work_stop.wav" innerRadius="3.0" outerRadius="60.0" >
+        <volume indoor="0.3" outdoor="0.7" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- FORAGE HARVESTER TOOL DEFAULT -->
+
+    <template name="forageHarvesterStart" file="$data/sounds/tools/harvest/forageWorkHeaderStart.wav" innerRadius="2.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.40" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="forageHarvesterWork" file="$data/sounds/tools/harvest/forageHarvesterWorkHeaderLoop.wav" innerRadius="2.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.45" outdoor="1.40" />
+        <pitch indoor="0.9" outdoor="1.1" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="forageHarvesterStop" file="$data/sounds/tools/harvest/forageWorkHeaderStop.wav" innerRadius="2.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="1.40" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- FORAGE HARVESTER KRONE TOOLS -->
+
+    <template name="FORAGE_HARVESTER_KRONE_TOOL_START" file="$data/sounds/tools/harvest/forage_harvester_krone_work_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="FORAGE_HARVESTER_KRONE_TOOL_WORK" file="$data/sounds/tools/harvest/forage_harvester_krone_work_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="FORAGE_HARVESTER_KRONE_TOOL_STOP" file="$data/sounds/tools/harvest/forage_harvester_krone_work_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <!-- FORAGE HARVESTER NEW HOLLAND TOOLS -->
+    <template name="FORAGE_HARVESTER_NH_TOOL_START" file="$data/sounds/tools/harvest/forage_harvester_nh_work_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="FORAGE_HARVESTER_NH_TOOL_WORK" file="$data/sounds/tools/harvest/forage_harvester_nh_work_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="FORAGE_HARVESTER_NH_TOOL_STOP" file="$data/sounds/tools/harvest/forage_harvester_nh_work_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <!-- FORAGE HARVESTER ROSTSELMASH TOOLS -->
+    <template name="FORAGE_HARVESTER_RSM_TOOL_START" file="$data/sounds/tools/harvest/forage_harvester_rsm_work_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="FORAGE_HARVESTER_RSM_TOOL_WORK" file="$data/sounds/tools/harvest/forage_harvester_rsm_work_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="FORAGE_HARVESTER_RSM_TOOL_STOP" file="$data/sounds/tools/harvest/forage_harvester_rsm_work_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.35" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" >
+            <modifier type="COMBINE_LOAD" value="0.00" modifiedValue="1.00" />
+            <modifier type="COMBINE_LOAD" value="1.00" modifiedValue="0.90" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- TEDDER TOOLS -->
+    <template name="DEFAULT_TEDDER" file="$data/sounds/tools/tedder/tedder_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.00" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_TEDDER_UNPOWERED" file="$data/sounds/tools/tedder/tedder_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.00" >
+            <modifier type="SPEED" value="0" modifiedValue="0.0" />
+            <modifier type="SPEED" value="0.3" modifiedValue="0.0" />
+            <modifier type="SPEED" value="5.0" modifiedValue="1" />
+        </volume>
+        <pitch indoor="1.0" outdoor="1.0" >
+            <modifier type="SPEED" value="0" modifiedValue="0.7" />
+            <modifier type="SPEED" value="5" modifiedValue="1" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+
+    <!-- MANURE TOOLS -->
+    <template name="DEFAULT_MANURE_SPREADER_01" file="$data/sounds/tools/manure/manure_spreader_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.0" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_MANURE_SPREADER_02" file="$data/sounds/tools/manure/manure_spreader_loop_02.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.3" outdoor="1.0" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_MANURE_FILL" file="$data/sounds/tools/manure/manure_fill_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.25" outdoor="0.8" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- SLURRY -->
+    <template name="SLURRY_01" file="$data/sounds/tools/slurry/garant_pump_big_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="SLURRY_02" file="$data/sounds/tools/slurry/garant_pump_small_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="SLURRY_03" file="$data/sounds/tools/slurry/zunhammer_pump_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.45" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- COTTON TRANSPORTER -->
+    <template name="COTTON_LOADER" file="$data/sounds/tools/cotton_transporter/cotton_load_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.10" outdoor="0.40" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- BALER TOOLS -->
+    <template name="BALE_WRAPPING_START" file="$data/sounds/tools/baler/bale_wrapping_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALE_WRAPPING_01" file="$data/sounds/tools/baler/bale_wrapping_loop_01.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALE_WRAPPING_02" file="$data/sounds/tools/baler/bale_wrapping_loop_02.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.1">
+        <volume indoor="0.4" outdoor="1.50" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_KNOT_CLEANING" file="$data/sounds/tools/baler/baler_knot_cleaning.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALE_WRAPPING_STOP" file="$data/sounds/tools/baler/bale_wrapping_stop_02.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="BALE_WRAPPING_STOP_02" file="$data/sounds/tools/baler/bale_wrapping_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_EJECT" file="$data/sounds/tools/baler/baler_eject.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_WRAPPING_START" file="$data/sounds/tools/baler/baler_wrapping_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_GRAB_01" file="$data/sounds/tools/baler/arcusin_grab_01.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="0.8" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_GRAB_02" file="$data/sounds/tools/baler/arcusin_grab_02.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_GRAB_03" file="$data/sounds/tools/baler/grabBale.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_GRAB_04" file="$data/sounds/tools/baler/arcusin_grab_03.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="BALER_DROP_IN_TRAILER" file="$data/sounds/tools/baler/dropBaleInLoader.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <template name="BALE_SLIDE" file="$data/sounds/tools/baler/baleSlide.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.45" outdoor="0.85" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- ROLLBELT TOOLS -->
+    <template name="ROLLBELT_ALARM" file="$data/sounds/tools/rollbelt/rollbelt_alarm.wav" innerRadius="2.0" outerRadius="40.0" >
+        <volume indoor="0.5" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.80" outdoor="1.00" />
+    </template>
+    <template name="ROLLBELT_DOOR" file="$data/sounds/tools/rollbelt/rollbelt_door.wav" innerRadius="5.0" outerRadius="40.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="ROLLBELT_EJECT" file="$data/sounds/tools/rollbelt/rollbelt_eject.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.4" outdoor="1.00" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="ROLLBELT_WORK_START" file="$data/sounds/tools/rollbelt/rollbelt_start.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.25" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="ROLLBELT_LOOP" file="$data/sounds/tools/rollbelt/rollbelt_loop.wav" innerRadius="5.0" outerRadius="60.0" fadeOut="0.3">
+        <volume indoor="0.25" outdoor="1.0" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+    <template name="ROLLBELT_WORK_STOP" file="$data/sounds/tools/rollbelt/rollbelt_stop.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="0.25" outdoor="1.0" />
+        <pitch indoor="1.0" outdoor="1.0" />
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template>
+
+    <!-- SURFACE DEFINITIONS -->
+    <!-- Vehicle splashes into water -->
+    <template name="WATER_SPLASH_01" file="$data/sounds/vehicles/surfaces/vehicle_water_splash_01.wav" innerRadius="5.0" outerRadius="60.0" >
+        <volume indoor="1.50" outdoor="1.50" />
+        <pitch indoor="1.00" outdoor="1.00" />
+        <lowpassGain indoor="1.00" outdoor="1.00" />
+    </template>
+
+    <!-- default surface sound -->
+    <template name="DEFAULT_SURFACE_FIELD" file="$data/sounds/vehicles/surfaces/field_loop.wav"    innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="1.0" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.2" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SURFACE_DIRT" file="$data/sounds/vehicles/surfaces/dirt_loop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="2.5" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.2" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SURFACE_GRASS" file="$data/sounds/vehicles/surfaces/grass_loop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="0.5" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.6" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.1" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SURFACE_SAND" file="$data/sounds/vehicles/surfaces/sand_loop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="1.1" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.2" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SURFACE_SOUND" file="$data/sounds/vehicles/surfaces/dirt_loop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="2.5" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.2" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SURFACE_GRAVEL" file="$data/sounds/vehicles/surfaces/gravel_loop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="1.2" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.6" />
+            <modifier type="SPEED" value="30" modifiedValue="1.0" />
+        </pitch>
+        <lowpassGain indoor="0.2" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SURFACE_ASPHALT" file="$data/sounds/vehicles/surfaces/asphalt_loop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="1.15" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.50" />
+        </pitch>
+        <lowpassGain indoor="0.2" outdoor="1.00" />
+    </template>
+    <template name="DEFAULT_SURFACE_WATER_SHALLOW" file="$data/sounds/vehicles/surfaces/water_loop.wav" innerRadius="2.0" outerRadius="30.0" fadeIn="0.25" fadeOut="0.25">
+        <volume indoor="0.05" outdoor="1.5" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="5" modifiedValue="0.4"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.9"/>
+            <modifier type="SPEED" value="31" modifiedValue="0.9"/>
+        </volume>
+        <pitch indoor="0.8" outdoor="0.8">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.20" />
+        </pitch>
+        <lowpassGain indoor="0.2" outdoor="1.00" />
+    </template>
+    <!-- template name="DEFAULT_SURFACE_MUD"         file="$data/sounds/vehicles/surfaces/mud.wav"         innerRadius="5.0" outerRadius="40.0" fadeIn="0.15" fadeOut="0.15">
+        <volume indoor="0.15" outdoor="0.25" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template -->
+    <!-- template name="DEFAULT_SURFACE_WET"         file="$data/sounds/vehicles/surfaces/wet.wav"         innerRadius="5.0" outerRadius="40.0" fadeIn="0.15" fadeOut="0.15">
+        <volume indoor="0.15" outdoor="0.25" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template -->
+    <!-- template name="DEFAULT_SURFACE_WOOD"         file="$data/sounds/vehicles/surfaces/wood.wav"         innerRadius="5.0" outerRadius="40.0" fadeIn="0.15" fadeOut="0.15">
+        <volume indoor="0.15" outdoor="0.25" >
+            <modifier type="SPEED" value="0" modifiedValue="0"/>
+            <modifier type="SPEED" value="30" modifiedValue="0.6"/>
+        </volume>
+        <pitch indoor="1.00" outdoor="1.00">
+            <modifier type="SPEED" value="0" modifiedValue="0.8" />
+            <modifier type="SPEED" value="30" modifiedValue="1.25" />
+        </pitch>
+        <lowpassGain indoor="0.50" outdoor="1.00" />
+    </template -->
+
+    <!-- PLAYER FOOTSTEPS -->
+    <template name="DEFAULT_FOOTSTEP_FIELD" file="$data/sounds/player/footsteps/step_dirt_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.7">
+        <volume indoor="0.28" outdoor="0.28" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_SNOW" file="$data/sounds/player/footsteps/step_snow_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.7">
+        <volume indoor="0.28" outdoor="0.28" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_snow_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_snow_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_snow_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_snow_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_snow_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_snow_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_snow_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_DIRT" file="$data/sounds/player/footsteps/step_dirt_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.7">
+        <volume indoor="0.28" outdoor="0.28" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_GRASS" file="$data/sounds/player/footsteps/step_grass_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.8">
+        <volume indoor="0.13" outdoor="0.13" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_SAND" file="$data/sounds/player/footsteps/step_sand_1.wav" innerRadius="2.0" outerRadius="10.0">
+        <volume indoor="0.05" outdoor="0.05" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_sand_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_sand_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_sand_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_sand_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_sand_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_sand_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_sand_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_SOUND" file="$data/sounds/player/footsteps/step_dirt_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.7">
+        <volume indoor="0.28" outdoor="0.28" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_dirt_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_LEAVES" file="$data/sounds/player/footsteps/step_grass_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.8">
+        <volume indoor="0.13" outdoor="0.13" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_grass_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_GRAVEL" file="$data/sounds/player/footsteps/step_gravel_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.8">
+        <volume indoor="0.18" outdoor="0.18" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_gravel_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_gravel_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_gravel_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_gravel_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_gravel_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_gravel_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_gravel_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_ASPHALT" file="$data/sounds/player/footsteps/step_concrete_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.6">
+        <volume indoor="0.5" outdoor="0.5" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_concrete_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_concrete_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_concrete_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_concrete_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_concrete_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_concrete_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_concrete_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_FOOTSTEP_WATER_SHALLOW" file="$data/sounds/player/footsteps/step_water_1.wav" innerRadius="2.0" outerRadius="10.0" pitchScale="0.7">
+        <volume indoor="0.28" outdoor="0.28" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.8" maxPitch="1.1" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/player/footsteps/step_water_2.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_water_3.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_water_4.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_water_5.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_water_6.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_water_7.wav"/>
+        <sourceRandomization file="$data/sounds/player/footsteps/step_water_8.wav"/>
+    </template>
+
+    <!-- HORSE HOOFSTEPS - RIDEABLE -->
+    <template name="DEFAULT_HOOFSTEP_FIELD" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_field_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_DIRT" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_GRASS" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_SAND" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_sand_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_SOUND" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_dirt_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_LEAVES" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_grass_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_GRAVEL" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_gravel_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_ASPHALT" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.45" outdoor="0.45" />
+        <pitch indoor="0.60" outdoor="0.60" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_concrete_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_WATER_SHALLOW" file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_1.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.3" outdoor="0.3" />
+        <pitch indoor="0.9" outdoor="0.9" />
+        <randomization minVolume="0.1" maxVolume="0.2" minPitch="0.1" maxPitch="0.2" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_2.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_3.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_4.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_5.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_6.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_7.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horse_step_water_8.wav"/>
+    </template>
+
+    <template name="DEFAULT_HOOFSTEP_SNOW" file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_01.wav" innerRadius="5.0" outerRadius="45.0">
+        <volume indoor="0.22" outdoor="0.22" />
+        <pitch indoor="0.7" outdoor="0.7" />
+        <randomization minVolume="0.1" maxVolume="0.3" minPitch="0.1" maxPitch="0.40" minLowpassGain="0" maxLowpassGain="0" />
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_02.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_03.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_04.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_05.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_06.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_07.wav"/>
+        <sourceRandomization file="$data/sounds/animals/horse/rideable/locomotion/horseStepSnow_08.wav"/>
+    </template>
+
+</soundTemplates>
