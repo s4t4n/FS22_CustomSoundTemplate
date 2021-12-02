@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="40">
+
+<!-- Custom Sound Templates 1.0.0 von s4t4n -->
+	<author>s4t4n</author>
+	<version>1.0.0</version>
+	<title>
+		<de>Individuelle Sound Templates</de> 
+		<en>custom sound temps</en>
+	</title>
+	<description>
+		<de><![CDATA[verändert die SoundTemplates]]></de>
+		<en><![CDATA[changes soundtemplates]]></en>
+	</description>
+	<iconFilename>store.dds</iconFilename>
+	<multiplayer supported="true"/>
+	<sounds externalSoundFile="customsoundtemps.xml" />
+	<extraSourceFiles>
+		<sourceFile filename="customsoundtemps.lua"/>
+	</extraSourceFiles>
+	<inputBindings>		
+    </inputBindings>
+	<l10n>		
+    </l10n>
+</modDesc> 
