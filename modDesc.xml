@@ -18,6 +18,7 @@
 	<sounds externalSoundFile="Custom_soundTemplates.xml" />
 	<extraSourceFiles>
 		<sourceFile filename="customsoundtemps.lua"/>
+		<sourceFile filename="Custom_soundTemplates.xml"/>
 	</extraSourceFiles>
 	<inputBindings>		
     </inputBindings>
