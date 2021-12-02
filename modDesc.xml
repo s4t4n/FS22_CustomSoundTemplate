@@ -2,8 +2,9 @@
 <modDesc descVersion="61">
 
 <!-- Custom Sound Templates 1.0.0 von s4t4n -->
+<!-- Custom Sound Templates 1.0.0.1 von s4t4n -->
 	<author>s4t4n</author>
-	<version>2.0.0</version>
+	<version>1.0.0.1</version>
 	<title>
 		<de>Individuelle Sound Templates BETA</de> 
 		<en>custom sound templates BETA</en>
@@ -14,7 +15,7 @@
 	</description>
 	<iconFilename>store.dds</iconFilename>
 	<multiplayer supported="true"/>
-	<sounds externalSoundFile="customsoundtemps.xml" />
+	<sounds externalSoundFile="Custom_soundTemplates.xml" />
 	<extraSourceFiles>
 		<sourceFile filename="customsoundtemps.lua"/>
 	</extraSourceFiles>
