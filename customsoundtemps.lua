@@ -8,7 +8,7 @@ function SoundManager:loadSoundTemplates(xmlFilename)
 	-- local xml = loadXMLFile("motorizedOverwritesXML", BetterFuelUsage.dir .. "motorizedOverwrites.xml")
    
    --local xmlFile = loadXMLFile("TempTemplates", "csoundstemp.xml") -- soundTemplates
-   local xmlFile = loadXMLFile("csoundstemp.xml")
+   local xmlFile = loadXMLFile("Custom_soundTemplates.xml")
     if xmlFile ~= nil then
         local i = 0
         while true do
